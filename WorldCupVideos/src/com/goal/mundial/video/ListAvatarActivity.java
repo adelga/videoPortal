@@ -139,6 +139,8 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 	private boolean catTodasSelec = false;
 	private boolean textSpinnerChanged = false;
 	public static final String API_KEY = "AIzaSyBWhF9xlg0bWM6MGfuEWhSbioQW4dXXdL0";
+
+	private static final int REQ_CAT_SELECTED = 4;
 	Display display;
 	Typeface tf;
 	private float textSize = 22f;
@@ -290,6 +292,11 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 
 				public void onClick(View v) {
 					crearDialogoSeleccion();
+					Intent intent = new Intent();
+					intent.setClass(mContext, SelectCategory.class);
+					intent.putExtra("catList", catList);
+					intent.putExtra("CatListIds", catListIds);
+					startActivity(intent);
 
 				}
 			});
@@ -1287,7 +1294,11 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 						errorReason.toString());
 				Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
 			}
-		} else {
+		} else if(requestCode == REQ_CAT_SELECTED){
+			
+			
+			
+		} else{
 			if(!notShowFavAgain){
 		
 			StringFav fav;

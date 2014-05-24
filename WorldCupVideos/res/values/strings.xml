@@ -52,5 +52,8 @@
     <string name="shareapp">Share App</string>
     <string name="fav">BookMark this video?</string>
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
+    <string name="title_activity_select_category">Select Category</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
