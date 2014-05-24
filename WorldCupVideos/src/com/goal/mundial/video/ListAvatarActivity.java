@@ -39,6 +39,7 @@ import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebSettings;
@@ -54,6 +55,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.SectionIndexer;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -292,11 +294,11 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 
 				public void onClick(View v) {
 					crearDialogoSeleccion();
-					Intent intent = new Intent();
-					intent.setClass(mContext, SelectCategory.class);
-					intent.putExtra("catList", catList);
-					intent.putExtra("CatListIds", catListIds);
-					startActivity(intent);
+//					Intent intent = new Intent();
+//					intent.setClass(mContext, SelectCategory.class);
+//					intent.putExtra("catList", catList);
+//					intent.putExtra("CatListIds", catListIds);
+//					startActivity(intent);
 
 				}
 			});
@@ -1021,68 +1023,12 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		builder.setTitle(getResources().getString(R.string.selectionCategory));
 		categoriasSelected = new ArrayList<String>();
 
-		builder.setMultiChoiceItems(catList, null,
-				new DialogInterface.OnMultiChoiceClickListener() {
-
-					public void onClick(DialogInterface dialog, int item,
-							boolean isChecked) {
-						Log.i("Dialogos", "Opción elegida: " + catList[item]);
-
-						catTodasSelec = false;
-
-						if (item == 0) {
-
-							if (isChecked == true) {
-								catTodasSelec = true;
-								Log.d("Entro en el Todas", "True");
-							} else {
-								catTodasSelec = false;
-								Log.d("Entro en el Todas", "False");
-							}
-
-						} else {
-							if (isChecked == true) {
-
-								categoriasSelected.add(catListIds[item]);
-
-								if (categoriasSelected.size() == 1) {
-
-									auxiliar = catListIds[item];
-
-								} else {
-
-									auxiliar = auxiliar + " , "
-											+ catListIds[item];
-								}
-
-								Log.d(tag, "añado categoria: "
-										+ catListIds[item] + "   "
-										+ categoriasSelected.size());
-
-							} else {
-
-								categoriasSelected.remove(catListIds[item]);
-
-								if (auxiliar.contains(", " + catListIds[item])) {
-
-									auxiliar = auxiliar.replace(", "
-											+ catListIds[item] + " ", "");
-
-								} else if (auxiliar.contains(catListIds[item]
-										+ " ,")) {
-
-									auxiliar = auxiliar.replace(
-											catListIds[item] + " ,", "");
-
-								}
-
-								Log.d(tag, "elemino categoria "
-										+ catListIds[item]);
-							}
-						}
-
-					}
-				});
+//		builder.setMultiChoiceItems(catList, null,
+//				new DialogInterface.OnMultiChoiceClickListener() {
+//
+//					public void onClick(DialogInterface dialog, int item,
+//							boolean isChecked) {}
+//				});
 
 		builder.setPositiveButton(getResources()
 				.getString(R.string.confSpinner),
@@ -1138,13 +1084,96 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 
 					}
 				});
+		ScrollView sclView=new ScrollView(mContext);
+		LinearLayout ll = new LinearLayout(mContext);
+		
+		ll.setOrientation(LinearLayout.VERTICAL);
+		for (int i =0; i<catList.length;i++){
+			CheckBox checkBox= new CheckBox(mContext);
+			checkBox.setText(catList[i]);
+			checkBox.setTypeface(tf);
+			checkBox.setId(584788888+i);
+			checkBox.setBackground(getResources().getDrawable(R.drawable.blue));
+			checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+						int item =buttonView.getId() -584788888;
+						checkCategory(item, isChecked);
+						
+				}
+			});
+			ll.addView(checkBox, new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT ));
+		}
+		sclView.addView(ll, new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
+		builder.setView(sclView);
+		Dialog dialg=builder.create();
 
-		builder.create();
-
-		return builder.show();
+		dialg.show();
+		
+		return dialg;
 
 	}
 
+	private void checkCategory(int item, boolean isChecked){
+
+		Log.i("Dialogos", "Opción elegida: " + catList[item]);
+
+		catTodasSelec = false;
+
+		if (item == 0) {
+
+			if (isChecked == true) {
+				catTodasSelec = true;
+				Log.d("Entro en el Todas", "True");
+			} else {
+				catTodasSelec = false;
+				Log.d("Entro en el Todas", "False");
+			}
+
+		} else {
+			if (isChecked == true) {
+
+				categoriasSelected.add(catListIds[item]);
+
+				if (categoriasSelected.size() == 1) {
+
+					auxiliar = catListIds[item];
+
+				} else {
+
+					auxiliar = auxiliar + " , "
+							+ catListIds[item];
+				}
+
+				Log.d(tag, "añado categoria: "
+						+ catListIds[item] + "   "
+						+ categoriasSelected.size());
+
+			} else {
+
+				categoriasSelected.remove(catListIds[item]);
+
+				if (auxiliar.contains(", " + catListIds[item])) {
+
+					auxiliar = auxiliar.replace(", "
+							+ catListIds[item] + " ", "");
+
+				} else if (auxiliar.contains(catListIds[item]
+						+ " ,")) {
+
+					auxiliar = auxiliar.replace(
+							catListIds[item] + " ,", "");
+
+				}
+
+				Log.d(tag, "elemino categoria "
+						+ catListIds[item]);
+			}
+		}
+
+	
+	}
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	private class ContentAdapter extends SimpleAdapter implements
