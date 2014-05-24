@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#88000000"
+    android:orientation="vertical" >
+<LinearLayout
+            android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2">
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/RlayoutVideo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:layout_gravity="center"
+        
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="#00000000"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/layoutVideoInfo"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.15"
+            android:background="@drawable/blue"
+            android:paddingBottom="10dp"
+            android:paddingRight="5dp"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:id="@+id/tituloVideo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="0.9"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:textColor="#ffdc0e"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/buttonExitVideo"
+                android:layout_width="0dp"
+                android:layout_weight="0.1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:adjustViewBounds="true"
+                android:background="#00000000"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/exitv_button" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/video"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_below="@id/layoutVideoInfo"
+            android:layout_weight="0.65"
+            android:duplicateParentState="true"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" >
+
+            <com.google.android.youtube.player.YouTubePlayerView
+                android:id="@+id/youtubeplayerview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+
+            <TextView
+                android:id="@+id/wordDefinition"
+                android:layout_width="fill_parent"
+                android:layout_height="400dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                android:clickable="true"
+                android:drawableBottom="@drawable/escuchar"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+              android:textColor="@android:color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutVideoButtons"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_below="@id/video"
+            android:layout_weight="0.2"
+            android:paddingBottom="5dp" >
+
+            <Button
+                android:id="@+id/buttonSaveF"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/green_button"
+                android:radius="5dp"
+                android:text="@string/ButtonSaveFav"
+                android:textColor="#013668" />
+
+            <Button
+                android:id="@+id/buttonDefinicion"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/yellow_button"
+                android:radius="5dp"
+                android:text="@string/verdefinicion"
+                android:textColor="#013668" />
+        </LinearLayout>
+    </LinearLayout>
+<LinearLayout
+            android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2">
+    </LinearLayout>
+
+</LinearLayout>
