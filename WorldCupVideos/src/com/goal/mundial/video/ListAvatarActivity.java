@@ -47,6 +47,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -142,8 +145,12 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 
 	protected Context mContext;
 
+	protected boolean notShowFavAgain;
+
+	private SharedPreferences prefs;
 	@SuppressLint("NewApi")
 	public void onCreate(Bundle bundle) {
+		
 
 		super.onCreate(bundle);
 		Log.d("onCreate", "Entra al onCreate");
@@ -194,9 +201,9 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 				e.printStackTrace();
 			}
 
-			SharedPreferences prefs = getSharedPreferences(
+			prefs = getSharedPreferences(
 					"SIGNATICPreferencias", Context.MODE_PRIVATE);
-
+			notShowFavAgain=prefs.getBoolean("notShowFavAgain", false);
 			/**
 			 * Comentado la primera pantalla de aceptación de términos y
 			 * condiciones para la prueba piloto de la app de Garrigou. Para
@@ -204,6 +211,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 			 * descomentar e incluir el texto oficial de términos y condiciones
 			 * **/
 
+			
 			if (!prefs.getBoolean("terminos", false)) {
 
 				Log.d("DIALOG", "ter; " + prefs.getBoolean("terminos", false));
@@ -229,7 +237,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 
 					public void onClick(View v) {
 
-						SharedPreferences prefs = getSharedPreferences(
+						prefs = getSharedPreferences(
 								"SIGNATICPreferencias", Context.MODE_PRIVATE);
 						SharedPreferences.Editor editor = prefs.edit();
 						editor.putBoolean("terminos", true);
@@ -692,9 +700,10 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 
 	@Override
 	public void onStart() {
-
+	
 		super.onStart();
-
+	prefs = getSharedPreferences("SIGNATICPreferencias",
+				Context.MODE_PRIVATE);
 		EasyTracker.getInstance(this).activityStart(this);
 
 	}
@@ -1279,10 +1288,10 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 				Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
 			}
 		} else {
-			SharedPreferences pref = getSharedPreferences("SIGNATICPreferencias",
-					Context.MODE_PRIVATE);
+			if(!notShowFavAgain){
+		
 			StringFav fav;
-			String listfav = pref.getString("favoritos", "nada");
+			String listfav = prefs.getString("favoritos", "nada");
 			String tittleFav="";
 			if (!listfav.equalsIgnoreCase("nada")) {
 
@@ -1313,10 +1322,26 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 			favtext.setBackground(getResources().getDrawable(R.drawable.blue));
 			favtext.setText(tittleFav);
 			favtext.setTypeface(tf);
-
 			favtext.setGravity(Gravity.CENTER);
 			favtext.setTextSize(textSize);
 			builderfav.setCustomTitle(favtext);
+			CheckBox check = new CheckBox(mContext);
+			check.setText(getString(R.string.textoradiobuttondialogfve));
+			check.setTypeface(tf);
+			check.setBackground(getResources().getDrawable(R.drawable.blue));
+			check.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+						notShowFavAgain=isChecked;
+						Editor ed = prefs.edit();
+						ed.putBoolean("notShowFavAgain", notShowFavAgain);
+						ed.commit();
+				}
+			});
+			favtext.setGravity(Gravity.CENTER);
+			favtext.setTextSize(textSize);
+			builderfav.setView(check);
 			builderfav.setNegativeButton(getString(R.string.cancel),
 					new DialogInterface.OnClickListener() {
 
@@ -1337,15 +1362,14 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 			accept.setTypeface(tf);
 			accept.setTextSize(textSize);
 			accept.setBackgroundResource(R.drawable.green_button);
-
+			}
 		}
 	}
 
 	protected void modifyFavorito() {
-		SharedPreferences pref = getSharedPreferences("SIGNATICPreferencias",
-				Context.MODE_PRIVATE);
+		
 		StringFav fav;
-		String listfav = pref.getString("favoritos", "nada");
+		String listfav = prefs.getString("favoritos", "nada");
 		String nombre = nombreVideo;
 		if (!listfav.equalsIgnoreCase("nada")) {
 
@@ -1366,13 +1390,12 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 				fav.deleteNombre(nombre);
 			}
 
-			Editor ed = pref.edit();
+			Editor ed = prefs.edit();
 			ed.putString("favoritos", fav.toString());
 			ed.commit();
 
 		} else {
 
-			// añadir
 			if (!listfav.equalsIgnoreCase("nada")) {
 
 				fav = new StringFav(listfav);
@@ -1383,7 +1406,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 				fav = new StringFav(nombre);
 			}
 
-			Editor ed = pref.edit();
+			Editor ed = prefs.edit();
 			ed.putString("favoritos", fav.toString());
 			ed.commit();
 
