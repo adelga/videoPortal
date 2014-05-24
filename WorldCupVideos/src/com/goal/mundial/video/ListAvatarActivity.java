@@ -185,7 +185,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 			TextView tittle = (TextView) findViewById(R.id.TextViewHeader1);
 			tittle.setTypeface(tf);
 			Log.d("TAG", "n1");
-
+			categoriasSelected = new ArrayList<String>();
 			try {
 				WebView wV = (WebView) findViewById(R.id.webview);
 				WebSettings settings = wV.getSettings();
@@ -1021,7 +1021,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
 		builder.setTitle(getResources().getString(R.string.selectionCategory));
-		categoriasSelected = new ArrayList<String>();
+		
 
 //		builder.setMultiChoiceItems(catList, null,
 //				new DialogInterface.OnMultiChoiceClickListener() {
@@ -1091,6 +1091,8 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		for (int i =0; i<catList.length;i++){
 			CheckBox checkBox= new CheckBox(mContext);
 			checkBox.setText(catList[i]);
+			Log.d(tag, "categorias selected: " + categoriasSelected.toString());
+			if(categoriasSelected.contains(catListIds[i])) checkBox.setChecked(true);
 			checkBox.setTypeface(tf);
 			checkBox.setId(584788888+i);
 			checkBox.setBackground(getResources().getDrawable(R.drawable.blue));
