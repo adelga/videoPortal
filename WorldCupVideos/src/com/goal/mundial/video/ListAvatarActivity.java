@@ -1023,12 +1023,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		builder.setTitle(getResources().getString(R.string.selectionCategory));
 		
 
-//		builder.setMultiChoiceItems(catList, null,
-//				new DialogInterface.OnMultiChoiceClickListener() {
-//
-//					public void onClick(DialogInterface dialog, int item,
-//							boolean isChecked) {}
-//				});
+
 
 		builder.setPositiveButton(getResources()
 				.getString(R.string.confSpinner),
