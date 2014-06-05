@@ -1,1 +1,0 @@
-INDEX VERSION 1.126+C:\Users\Javi\Desktop\Códigos\WorldCupVideos\Signa\.metadata\.plugins\org.eclipse.jdt.core
