@@ -290,7 +290,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 			cmbOpciones = (Button) findViewById(R.id.CmbOpciones);
 			cmbOpciones.setTypeface(tf);
 			cmbOpciones.setTextSize(textSize);
-
+			cmbOpciones.setSingleLine(true);
 			cmbOpciones.setOnClickListener(new OnClickListener() {
 
 				public void onClick(View v) {
@@ -1077,7 +1077,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 								}
 							}
 
-							cmbOpciones.setText("Categorías: "
+							cmbOpciones.setText("Categories "
 									+ auxiliar.substring(0, auxiliar.length()));
 							textSpinnerChanged = true;
 
@@ -1169,7 +1169,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 				if (auxiliar.contains(", " + catListIds[item])) {
 
 					auxiliar = auxiliar.replace(", "
-							+ catListIds[item] + " ", "");
+							+ catListIds[item], "");
 					auxiliar.trim();
 
 				} else if (auxiliar.contains(catListIds[item]
@@ -1179,6 +1179,8 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 							catListIds[item] + " ,", "");
 					auxiliar.trim();
 
+				} else if (auxiliar.contains(catListIds[item])){
+					auxiliar = "";
 				}
 
 				Log.d(tag, "elemino categoria "

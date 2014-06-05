@@ -91,12 +91,14 @@ public class SplashActivity extends Activity {
 					catList[i].trim();
 					catListIds[i].trim();
 				}
-				
 				Arrays.sort(catList);
 				Arrays.sort(catListIds);
 				
 				for(int i = 0; i<catList.length; i++){
 					Log.d("ordenacion", catList[i]);
+				}
+				for(int i = 0; i<catListIds.length; i++){
+					Log.d("ordenacion", catListIds[i]);
 				}
 				
 				Collections.sort(avatares, new ComparadorMainList());
