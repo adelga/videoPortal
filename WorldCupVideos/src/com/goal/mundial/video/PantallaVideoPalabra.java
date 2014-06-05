@@ -2,6 +2,7 @@ package com.goal.mundial.video;
 
 import org.json.JSONException;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,6 +30,7 @@ import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
 
 
+@SuppressLint("WrongViewCast")
 public class PantallaVideoPalabra extends YouTubeBaseActivity implements
 		YouTubePlayer.OnInitializedListener {
 

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">WCVideos</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_list_avatar">ListVideoActivity</string>
     <string name="title_activity_web">WCVideos</string>
     <string name="buttonActivate">Start</string>
-    <string name="tituloSpinner">Select a category</string>
+    <string name="tituloSpinner">Categories</string>
     <string name="acercadetituloapp1">WorldCup</string>
     <string name="acercadetituloapp2">WorldCup</string>
     <string name="acercadeapp">"WorldCup" is a free and accessible application developed by The Best.</string>
@@ -19,41 +18,40 @@
     <string name="ButtonTwitter">Twitter</string>
     <string name="ButtonExit">Leave</string>
     <string name="ButtonSaveFav">Save video to favorites</string>
-    <string name="ButtonDeleteFav">Remove BookMark videos?</string>
-    <string name="ButtonReplay">Volver a reproducir</string>
+    <string name="ButtonDeleteFav">Remove video from favorites</string>
+    <string name="ButtonReplay">Play again</string>
     <string name="activarConexion">Enable connection</string>
-    <string name="conexionRed">To use the application you need to connect the device to the network Please connect your data network or wireless connections</string>
+    <string name="conexionRed">To use the application you need to connect the device to the network. Please connect your data network or wireless connections</string>
     <string name="irA">Go to network connections</string>
     <string name="errorConexion">Failed to activate connection</string>
-    <string name="reconexion">Unfortunately failed to connect. Please check it and try again</string>
+    <string name="reconexion">Unfortunately failed to connect. Please check network connection and try again</string>
     <string name="esperaConexion">It is checking the network connection. Please wait</string>
     <string name="cancelar">Cancel</string>
-    <string name="cargando">Loading Datas</string>
+    <string name="cargando">Loading data</string>
     <string name="dialogCheck">Do not show this dialog again</string>
-    <string name="tituloterminos">Terms and conditions of use</string>
-    <string name="terminosycondiciones">Please note that all goals and highlights videos will be available about 2 hours after each match ended</string>
+    <string name="tituloterminos">Remember</string>
+    <string name="terminosycondiciones">Please note that all goals and highlights videos will be available as soon as possible after every match end.</string>
     <string name="aceptar">I agree</string>
-    <string name="notification_share_subject">Share </string>
-    <string name="notification_share_text">Available at: \nhttps://play.google.com/store/apps/details?id=com.goal.mundial.video</string>
-    <string name="textocompartirapp">Share application "Videos WORLD CUP " on the major social networks:</string>
+    <string name="notification_share_subject">WordCup Videos</string>
+    <string name="notification_share_text">The best WorldCup Videos available at: \nhttps://play.google.com/store/apps/details?id=com.goal.mundial.video</string>
+    <string name="textocompartirapp">Share application "Videos WORLD CUP " on the major social networks</string>
     <string name="textoradiobuttondialogfve">Do not show this dialog</string>
     <string name="followTextDialog">Follow us</string>
     <string name="flash_version_player">You do not have Flash installed</string>
     <string name="acerca_de">About :</string>
-    <string name="masinfo">More information on: </string>
-    <string name="compartir_aplicacion">Share Application:</string>
+    <string name="masinfo">More information on </string>
+    <string name="compartir_aplicacion">Share Application</string>
     <string name="fundacion">Vodafone Foundation Spain</string>
-    <string name="selectionCategory">Category Selection</string>
+    <string name="selectionCategory">Category selection</string>
     <string name="confSpinner">Confirm</string>
     <string name="toastSelectAll">You have selected ALL option. All words from all categories will be displayed.</string>
     <string name="vervideo">Watch video</string>
-    <string name="verdefinicion">Definition</string>
-    <string name="url">http://redteam.socialdeveloper.org/worldcup.xml</string>
-    <string name="shareapp">Share App</string>
-    <string name="fav">BookMark this video?</string>
-    <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
-    <string name="title_activity_select_category">Select Category</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-
+	<string name="verdefinicion">Definition</string>
+	   <string name="fav">BookMark this video?</string>
+	    <string name="url">http://redteam.socialdeveloper.org/worldcup.xml</string>
+	     <string name="shareapp">Share App</string>
+	     <string name="action_settings">Settings</string>
+	     
+	     <string name="title_activity_select_category">Categories</string>
+	     <string name="error_player">Error</string>
 </resources>

@@ -53,6 +53,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
+import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -90,7 +91,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 	private ImageButton buttonSearch;
 	private ImageButton buttonFav;
 	private ImageButton buttonInf;
-	private Button shareButton;
+	private ImageButton shareButton;
 	private Button cmbOpciones;
 	// TextView wordDef;
 
@@ -231,6 +232,8 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 						.findViewById(R.id.layouttext);
 				TextView textView = (TextView) initDialog
 						.findViewById(R.id.titulo);
+				termsText.setTypeface(tf);
+				termsText.setPaddingRelative(10, 10, 10, 10);
 				textView.setTypeface(tf);
 				textView.setText(R.string.tituloterminos);
 
@@ -291,7 +294,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 			cmbOpciones = (Button) findViewById(R.id.CmbOpciones);
 			cmbOpciones.setTypeface(tf);
 			cmbOpciones.setTextSize(textSize);
-
+			cmbOpciones.setSingleLine(true);
 			cmbOpciones.setOnClickListener(new OnClickListener() {
 
 				public void onClick(View v) {
@@ -352,9 +355,13 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 						pantallaAcerca.setVisibility(View.VISIBLE);
 						textoCompartirApp = (TextView) findViewById(R.id.textoCompartirApp);
 						textoCompartirApp.setVisibility(View.VISIBLE);
-
-						shareButton = (Button) findViewById(R.id.shareButton);
-
+						textoCompartirApp.setTypeface(tf);
+						textoCompartirApp.setTextSize(textSize);
+						
+						shareButton = (ImageButton) findViewById(R.id.shareButton);
+						shareButton.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_share));
+						shareButton.setBackground(getResources().getDrawable(R.drawable.blue_button));
+						shareButton.setScaleType(ScaleType.CENTER);
 						shareButton.setOnClickListener(new OnClickListener() {
 							public void onClick(View v) {
 
@@ -1151,7 +1158,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 								}
 							}
 
-							cmbOpciones.setText("Categorías: "
+							cmbOpciones.setText("Categories "
 									+ auxiliar.substring(0, auxiliar.length()));
 							textSpinnerChanged = true;
 
@@ -1203,6 +1210,9 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		accept.setTypeface(tf);
 		accept.setTextSize(textSize);
 		accept.setBackgroundResource(R.drawable.green_button);
+	
+		
+		
 		return dialg;
 
 	}
@@ -1249,7 +1259,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 				if (auxiliar.contains(", " + catListIds[item])) {
 
 					auxiliar = auxiliar.replace(", "
-							+ catListIds[item] + " ", "");
+							+ catListIds[item], "");
 					auxiliar.trim();
 
 				} else if (auxiliar.contains(catListIds[item]
@@ -1259,6 +1269,8 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 							catListIds[item] + " ,", "");
 					auxiliar.trim();
 
+				} else if (auxiliar.contains(catListIds[item])){
+					auxiliar = "";
 				}
 
 				Log.d(tag, "elemino categoria "

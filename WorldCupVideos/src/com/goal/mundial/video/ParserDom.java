@@ -51,7 +51,9 @@ public XmlData parse() {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 
 			// Realizamos la lectura completa del XML
+			
 			Document dom = builder.parse(this.getInputStream());
+			
 
 			// Nos posicionamos en el nodo principal del árbol
 			Element root = dom.getDocumentElement();
