@@ -32,9 +32,9 @@
     <string name="tituloterminos">Remember</string>
     <string name="terminosycondiciones">Please note that all goals and highlights videos will be available as soon as possible after every match end.</string>
     <string name="aceptar">I agree</string>
-    <string name="notification_share_subject">Share </string>
-    <string name="notification_share_text">Available at: \nhttps://play.google.com/store/apps/details?id=com.goal.mundial.video</string>
-    <string name="textocompartirapp">Share application "Videos WORLD CUP " on the major social networks:</string>
+    <string name="notification_share_subject">WordCup Videos</string>
+    <string name="notification_share_text">The best WorldCup Videos available at: \nhttps://play.google.com/store/apps/details?id=com.goal.mundial.video</string>
+    <string name="textocompartirapp">Share application "Videos WORLD CUP " on the major social networks</string>
     <string name="textoradiobuttondialogfve">Do not show this dialog</string>
     <string name="followTextDialog">Follow us</string>
     <string name="flash_version_player">You do not have Flash installed</string>
