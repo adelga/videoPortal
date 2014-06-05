@@ -53,6 +53,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
+import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -90,7 +91,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 	private ImageButton buttonSearch;
 	private ImageButton buttonFav;
 	private ImageButton buttonInf;
-	private Button shareButton;
+	private ImageButton shareButton;
 	private Button cmbOpciones;
 	// TextView wordDef;
 
@@ -231,6 +232,8 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 						.findViewById(R.id.layouttext);
 				TextView textView = (TextView) initDialog
 						.findViewById(R.id.titulo);
+				termsText.setTypeface(tf);
+				termsText.setPaddingRelative(10, 10, 10, 10);
 				textView.setTypeface(tf);
 				textView.setText(R.string.tituloterminos);
 
@@ -352,9 +355,13 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 						pantallaAcerca.setVisibility(View.VISIBLE);
 						textoCompartirApp = (TextView) findViewById(R.id.textoCompartirApp);
 						textoCompartirApp.setVisibility(View.VISIBLE);
-
-						shareButton = (Button) findViewById(R.id.shareButton);
-
+						textoCompartirApp.setTypeface(tf);
+						textoCompartirApp.setTextSize(textSize);
+						
+						shareButton = (ImageButton) findViewById(R.id.shareButton);
+						shareButton.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_share));
+						shareButton.setBackground(getResources().getDrawable(R.drawable.blue_button));
+						shareButton.setScaleType(ScaleType.CENTER);
 						shareButton.setOnClickListener(new OnClickListener() {
 							public void onClick(View v) {
 
@@ -1203,6 +1210,9 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		accept.setTypeface(tf);
 		accept.setTextSize(textSize);
 		accept.setBackgroundResource(R.drawable.green_button);
+	
+		
+		
 		return dialg;
 
 	}
