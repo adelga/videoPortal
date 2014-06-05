@@ -237,15 +237,15 @@ Enable automatic exception tracking
         public static final int TitleBackDialog=0x7f04000d;
         public static final int aceptar=0x7f040020;
         public static final int acerca_de=0x7f040027;
-        public static final int acercade1=0x7f040038;
-        public static final int acercade2=0x7f04003a;
+        public static final int acercade1=0x7f040037;
+        public static final int acercade2=0x7f040039;
         public static final int acercadeapp=0x7f040009;
         public static final int acercadeenlaceapp=0x7f04000a;
-        public static final int acercadetitulo1=0x7f040037;
-        public static final int acercadetitulo2=0x7f040039;
+        public static final int acercadetitulo1=0x7f040036;
+        public static final int acercadetitulo2=0x7f040038;
         public static final int acercadetituloapp1=0x7f040007;
         public static final int acercadetituloapp2=0x7f040008;
-        public static final int action_settings=0x7f040036;
+        public static final int action_settings=0x7f040033;
         public static final int activarConexion=0x7f040015;
         public static final int app_name=0x7f040001;
         public static final int buttonActivate=0x7f040005;
@@ -257,9 +257,9 @@ Enable automatic exception tracking
         public static final int confSpinner=0x7f04002c;
         public static final int dialogCheck=0x7f04001d;
         public static final int errorConexion=0x7f040018;
-        public static final int error_player=0x7f040033;
+        public static final int error_player=0x7f040035;
         public static final int esperaConexion=0x7f04001a;
-        public static final int fav=0x7f040032;
+        public static final int fav=0x7f040030;
         public static final int flash_version_player=0x7f040026;
         public static final int followTextDialog=0x7f040025;
         public static final int fundacion=0x7f04002a;
@@ -271,7 +271,6 @@ Replace placeholder ID with your tracking ID
 Replace placeholder ID with your tracking ID
          */
         public static final int ga_trackingId=0x7f040000;
-        public static final int hello_world=0x7f040035;
         public static final int irA=0x7f040017;
         public static final int masinfo=0x7f040028;
         public static final int menu_settings=0x7f040002;
@@ -279,8 +278,8 @@ Replace placeholder ID with your tracking ID
         public static final int notification_share_text=0x7f040022;
         public static final int reconexion=0x7f040019;
         public static final int selectionCategory=0x7f04002b;
-        public static final int shareapp=0x7f040031;
-        public static final int signos_de_ayuda=0x7f04003b;
+        public static final int shareapp=0x7f040032;
+        public static final int signos_de_ayuda=0x7f04003a;
         public static final int terminosycondiciones=0x7f04001f;
         public static final int textocompartirapp=0x7f040023;
         public static final int textoradiobuttondialogfve=0x7f040024;
@@ -290,7 +289,7 @@ Replace placeholder ID with your tracking ID
         public static final int tituloSpinner=0x7f040006;
         public static final int tituloterminos=0x7f04001e;
         public static final int toastSelectAll=0x7f04002d;
-        public static final int url=0x7f040030;
+        public static final int url=0x7f040031;
         public static final int verdefinicion=0x7f04002f;
         public static final int vervideo=0x7f04002e;
         public static final int video=0x7f04000b;

@@ -79,17 +79,31 @@ public class SplashActivity extends Activity {
 
 					// Arrays.sort(catList,new Comparador ());
 
-					catListIds = xmlData
-							.getInstitutionInfo()
-							.getWordCategoriesId()
-							.toArray(
-									new String[xmlData.getInstitutionInfo()
-											.getWordCategoriesId().size()]);
 
-					for (int i = 0; i < catList.length; i++) {
-						catList[i].trim();
-						catListIds[i].trim();
-					}
+
+				catListIds = xmlData
+						.getInstitutionInfo()
+						.getWordCategoriesId()
+						.toArray(
+								new String[xmlData.getInstitutionInfo()
+										.getWordCategoriesId().size()]);
+				
+				for(int i = 0; i<catList.length; i++){
+					catList[i].trim();
+					catListIds[i].trim();
+				}
+				Arrays.sort(catList);
+				Arrays.sort(catListIds);
+				
+				for(int i = 0; i<catList.length; i++){
+					Log.d("ordenacion", catList[i]);
+				}
+				for(int i = 0; i<catListIds.length; i++){
+					Log.d("ordenacion", catListIds[i]);
+				}
+				
+				Collections.sort(avatares, new ComparadorMainList());
+
 
 					Arrays.sort(catList);
 					Arrays.sort(catListIds);
