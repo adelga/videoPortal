@@ -1096,6 +1096,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 						int item =buttonView.getId() -584788888;
+						Log.d(tag, "categorias selected" + buttonView.getText());
 						checkCategory(item, isChecked);
 						
 				}

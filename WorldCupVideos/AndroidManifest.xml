@@ -48,8 +48,6 @@
         <activity
             android:name="com.goal.mundial.video.DialogCustomFve"
             android:screenOrientation="portrait" >
-
-            <!-- android:theme="@android:style/Theme.Holo.Dialog" > -->
         </activity>
 
         <meta-data
