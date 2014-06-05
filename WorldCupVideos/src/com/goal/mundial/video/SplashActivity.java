@@ -1,6 +1,7 @@
 package com.goal.mundial.video;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -85,8 +86,18 @@ public class SplashActivity extends Activity {
 						.toArray(
 								new String[xmlData.getInstitutionInfo()
 										.getWordCategoriesId().size()]);
-
-				// Arrays.sort(catListIds,new Comparador ());
+				
+				for(int i = 0; i<catList.length; i++){
+					catList[i].trim();
+					catListIds[i].trim();
+				}
+				
+				Arrays.sort(catList);
+				Arrays.sort(catListIds);
+				
+				for(int i = 0; i<catList.length; i++){
+					Log.d("ordenacion", catList[i]);
+				}
 				
 				Collections.sort(avatares, new ComparadorMainList());
 

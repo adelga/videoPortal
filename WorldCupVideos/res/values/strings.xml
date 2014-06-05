@@ -31,7 +31,7 @@
     <string name="cargando">Loading Datas</string>
     <string name="dialogCheck">Do not show this dialog again</string>
     <string name="tituloterminos">Terms and conditions of use</string>
-    <string name="terminosycondiciones">Please note that all Goal and Resumes videos are refresh when a match is finished</string>
+    <string name="terminosycondiciones">Please note that all goals and highlights videos will be available about 2 hours after each match ended</string>
     <string name="aceptar">I agree</string>
     <string name="notification_share_subject">Share </string>
     <string name="notification_share_text">Available at: \nhttps://play.google.com/store/apps/details?id=com.goal.mundial.video</string>

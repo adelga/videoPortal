@@ -3,11 +3,9 @@ package com.goal.mundial.video;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -67,9 +65,9 @@ public XmlData parse() {
 
 			InstitutionCategories instCat = new InstitutionCategories();
 			
-			instCat.setWordCategoriesValue("Todas");
+			instCat.setWordCategoriesValue(" All");
 			
-			instCat.setWordCategoriesId("TODAS");
+			instCat.setWordCategoriesId(" ALL");
 			
 			for (int a = 0; a < institution.getLength(); a ++){
 				

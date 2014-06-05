@@ -42,7 +42,7 @@
     <string name="vervideo">Ver video</string>
     <string name="verdefinicion">Definicion</string>
     <string name="flash_version_player">No tiene instalado Flash Player en su dispositivo</string>
-        <string name="url">http://redteam.socialdeveloper.org/mundial.xml</string>
-         <string name="shareapp">Compartir applicación</string>
-            <string name="fav">Añadir este vídeo a favoritos</string>
+    <string name="url">http://redteam.socialdeveloper.org/mundial.xml</string>
+    <string name="shareapp">Compartir applicación</string>
+    <string name="fav">Añadir este vídeo a favoritos</string>
 </resources>

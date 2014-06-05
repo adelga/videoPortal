@@ -3,6 +3,7 @@ package com.goal.mundial.video;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -64,6 +65,7 @@ import android.widget.Toast;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
+
 
 @SuppressLint({ "NewApi", "NewApi" })
 public class ListAvatarActivity extends Activity implements TextWatcher {
@@ -420,12 +422,22 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 					}
 
 					Log.d(tag, "favoritos " + listFiles.toString());
-
 					Collections.sort(listFiles, new Comparador());
+					
 					adapfav = new SimpleAdapter(getApplicationContext(),
 							obtainDatafav(listFiles), R.layout.list_row,
-							new String[] { "name" }, new int[] { R.id.title });
+							new String[] { "name" }, new int[] { R.id.title }) {
+						
+						@Override 
+						public View getView(int position, View convertView, ViewGroup parent) {
+					        View view = super.getView(position, convertView, parent);
+					        TextView textview = (TextView) view.findViewById(R.id.title);
+					        textview.setTypeface(tf);
+					        return view;
+					    }
+					};
 
+					
 					favoritos = !favoritos;
 					if (listgone == true) {
 
@@ -434,6 +446,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 						pantallaAcerca.setVisibility(View.GONE);
 
 						listView.setVisibility(View.VISIBLE);
+						
 						buttonInf.setSelected(false);
 
 						listgone = false;
@@ -483,6 +496,71 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 						adapter.notifyDataSetChanged();
 						buttonFav.setSelected(false);
 
+					}
+					
+					
+					if (notShowFavAgain){
+						
+
+						
+						
+						AlertDialog.Builder builderfav = new AlertDialog.Builder(mContext);
+
+						builderfav.setPositiveButton(getString(R.string.aceptar),
+								new DialogInterface.OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface dialog, int which) {
+										modifyFavorito();
+									}
+
+								});
+						TextView favtext = new TextView(mContext);
+						favtext.setBackground(getResources().getDrawable(R.drawable.blue));
+						favtext.setText("Do you want enable bookmarks?");
+						favtext.setTypeface(tf);
+						favtext.setGravity(Gravity.CENTER);
+						favtext.setTextSize(textSize);
+						builderfav.setCustomTitle(favtext);
+						CheckBox check = new CheckBox(mContext);
+						check.setText("Enable Bookmarks");
+						check.setTypeface(tf);
+						check.setChecked(false);
+						check.setBackground(getResources().getDrawable(R.drawable.blue));
+						check.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+							
+							@Override
+							public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+									notShowFavAgain=!isChecked;
+									Editor ed = prefs.edit();
+									ed.putBoolean("notShowFavAgain", notShowFavAgain);
+									ed.commit();
+							}
+						});
+						favtext.setGravity(Gravity.CENTER);
+						favtext.setTextSize(textSize);
+						builderfav.setView(check);
+						builderfav.setNegativeButton(getString(R.string.cancel),
+								new DialogInterface.OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface dialog, int which) {
+										dialog.dismiss();
+									}
+
+								});
+					
+						AlertDialog dialog = builderfav.create();
+						dialog.show();
+						Button cancel = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+						cancel.setTypeface(tf);
+						cancel.setTextSize(textSize);
+						cancel.setBackgroundResource(R.drawable.yellow_button);
+						Button accept = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+						accept.setTypeface(tf);
+						accept.setTextSize(textSize);
+						accept.setBackgroundResource(R.drawable.green_button);
+						
 					}
 
 				}
@@ -567,6 +645,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 										listView.setAdapter(adapter);
 										TextView txtView = (TextView) v
 												.findViewById(R.id.title);
+										txtView.setTypeface(tf);
 										String name = (String) txtView
 												.getText();
 										Log.d("AVATARES", "name: " + name);
@@ -637,6 +716,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 					Log.d("clik", "posrrr:" + pos);
 
 					TextView txtView = (TextView) arg1.findViewById(R.id.title);
+					txtView.setTypeface(tf);
 					String name = (String) txtView.getText();
 					String enlace = "";
 
@@ -1021,7 +1101,15 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
 		builder.setTitle(getResources().getString(R.string.selectionCategory));
+		TextView customTitleView= new TextView(mContext);
 		
+		customTitleView.setBackground(getResources().getDrawable(R.drawable.blue));
+		customTitleView.setText(getResources().getString(R.string.selectionCategory));
+		customTitleView.setTypeface(tf);
+		customTitleView.setGravity(Gravity.CENTER);
+		customTitleView.setTextSize(textSize);
+		
+		builder.setCustomTitle(customTitleView);
 
 
 
@@ -1033,6 +1121,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 
 						avataresFiltrados = new ArrayList<AvatarWord>(
 								receivedList);
+						Log.d("avataresfiltrados", avataresFiltrados+"");
 						if (catTodasSelec == true) {
 							auxiliar = getResources().getString(
 									R.string.tituloSpinner);
@@ -1043,7 +1132,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 									Toast.LENGTH_LONG).show();
 
 							if (textSpinnerChanged == true) {
-								cmbOpciones.setText(auxiliar);
+								cmbOpciones.setText(auxiliar.trim());
 							}
 
 						} else {
@@ -1079,6 +1168,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 
 					}
 				});
+		
 		ScrollView sclView=new ScrollView(mContext);
 		LinearLayout ll = new LinearLayout(mContext);
 		
@@ -1096,7 +1186,6 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 						int item =buttonView.getId() -584788888;
-						Log.d(tag, "categorias selected" + buttonView.getText());
 						checkCategory(item, isChecked);
 						
 				}
@@ -1105,10 +1194,15 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		}
 		sclView.addView(ll, new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
 		builder.setView(sclView);
-		Dialog dialg=builder.create();
+		AlertDialog dialg=builder.create();
+		
 
 		dialg.show();
-		
+		Button accept =  dialg.getButton(DialogInterface.BUTTON_POSITIVE);
+		tf= Typeface.createFromAsset(getAssets(), "brasilfont.otf");
+		accept.setTypeface(tf);
+		accept.setTextSize(textSize);
+		accept.setBackgroundResource(R.drawable.green_button);
 		return dialg;
 
 	}
@@ -1156,12 +1250,14 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 
 					auxiliar = auxiliar.replace(", "
 							+ catListIds[item] + " ", "");
+					auxiliar.trim();
 
 				} else if (auxiliar.contains(catListIds[item]
 						+ " ,")) {
 
 					auxiliar = auxiliar.replace(
 							catListIds[item] + " ,", "");
+					auxiliar.trim();
 
 				}
 
@@ -1271,6 +1367,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 					.compareToIgnoreCase(p2.getNombre());
 		}
 	}
+	
 
 	public void afterTextChanged(Editable arg0) {
 		autoCtextView.setText(arg0 + "");
@@ -1293,16 +1390,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		super.onConfigurationChanged(newConfig);
 		Toast.makeText(this, "Cambio la pantalla", Toast.LENGTH_LONG).show();
 		int orient = getResources().getConfiguration().orientation;
-		switch (orient) {
-		case Configuration.ORIENTATION_LANDSCAPE:
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-			break;
-		case Configuration.ORIENTATION_PORTRAIT:
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-			break;
-		default:
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-		}
+		
 	}
 
 	@Override
@@ -1451,5 +1539,15 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		}
 
 	}
+	
+	private static Comparator<String> ALPHABETICAL_ORDER = new Comparator<String>() {
+	    public int compare(String str1, String str2) {
+	        int res = String.CASE_INSENSITIVE_ORDER.compare(str1, str2);
+	        if (res == 0) {
+	            res = str1.compareTo(str2);
+	        }
+	        return res;
+	    }
+	};
 
 }
