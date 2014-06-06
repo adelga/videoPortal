@@ -187,6 +187,10 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 			setContentView(R.layout.activity_list_avatar);
 			TextView tittle = (TextView) findViewById(R.id.TextViewHeader1);
 			tittle.setTypeface(tf);
+			tittle.setTextSize(textSize);
+			TextView acercade = (TextView) findViewById(R.id.textoAcercaDe);
+			acercade.setTextSize(textSize);
+			acercade.setTypeface(tf);
 			Log.d("TAG", "n1");
 			categoriasSelected = new ArrayList<String>();
 			try {
@@ -668,7 +672,15 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 													obtainDatafav(lst),
 													R.layout.list_row,
 													new String[] { "name" },
-													new int[] { R.id.title });
+													new int[] { R.id.title }){
+												@Override 
+												public View getView(int position, View convertView, ViewGroup parent) {
+											        View view = super.getView(position, convertView, parent);
+											        TextView textview = (TextView) view.findViewById(R.id.title);
+											        textview.setTypeface(tf);
+											        return view;
+											    }
+											};
 											listView.setAdapter(aaa);
 
 										}
@@ -731,12 +743,13 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 
 						String normalizedName = Normalizer.normalize(
 								receivedList.get(i).getNombre(), Form.NFC);
-						Log.d("avatares", "nombre de la lista: "
-								+ normalizedName + " " + name);
+//						Log.d("avatares", "nombre de la lista: "
+//								+ normalizedName + " " + name);
 
 						if (normalizedName.equalsIgnoreCase(name)) {
 							enlace = receivedList.get(i).getEnlaceVideo();
 							nombreVideo = receivedList.get(i).getNombre();
+							Log.d("name", "name Video: " + nombreVideo);
 							defVideo = receivedList.get(i).getDefinicion();
 
 							break;
@@ -1508,7 +1521,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		
 		StringFav fav;
 		String listfav = prefs.getString("favoritos", "nada");
-		String nombre = nombreVideo;
+		String nombre = nombreVideo==null? "":nombreVideo;
 		if (!listfav.equalsIgnoreCase("nada")) {
 
 			fav = new StringFav(listfav);

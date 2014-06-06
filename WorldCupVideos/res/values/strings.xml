@@ -8,7 +8,7 @@
     <string name="tituloSpinner">Categories</string>
     <string name="acercadetituloapp1">WorldCup</string>
     <string name="acercadetituloapp2">WorldCup</string>
-    <string name="acercadeapp">"WorldCup" is a free and accessible application developed by The Best.</string>
+    <string name="acercadeapp">"WCVideos" is a free and accessible application developed</string>
     <string name="acercadeenlaceapp">Share the application</string>
     <string name="video">ACCESSIBILITY</string>
     <string name="cancel">Cancel</string>
@@ -30,12 +30,15 @@
     <string name="cargando">Loading data</string>
     <string name="dialogCheck">Do not show this dialog again</string>
     <string name="tituloterminos">Remember</string>
-    <string name="terminosycondiciones">Please note that all goals and highlights videos will be available as soon as possible after every match end.</string>
+    <string name="terminosycondiciones">Please note that all goals and highlight videos will be available as soon as possible after every match ends.</string>
     <string name="aceptar">I agree</string>
-    <string name="notification_share_subject">WordCup Videos</string>
-    <string name="notification_share_text">The best WorldCup Videos available at: \nhttps://play.google.com/store/apps/details?id=com.goal.mundial.video</string>
-    <string name="textocompartirapp">Share application "Videos WORLD CUP " on the major social networks</string>
+
+    <string name="notification_share_subject">WCVideos</string>
+    <string name="notification_share_text">WCVideos: The best WorldCup Videos available at: \nhttps://play.google.com/store/apps/details?id=com.goal.mundial.video</string>
+    <string name="textocompartirapp">Do you like this app? Share WCVideos with your friends on the major social networks</string>
+
     <string name="textoradiobuttondialogfve">Do not show this dialog</string>
+    <string name="textoAcercaDe">WCVideos is a free and accessible application that lets you enjoy the passion of the Brasil 2014 World Cup through all highlights and goals videos of every match. Enjoy watching them and do not forget to rate us !!</string>
     <string name="followTextDialog">Follow us</string>
     <string name="flash_version_player">You do not have Flash installed</string>
     <string name="acerca_de">About :</string>
