@@ -1413,9 +1413,8 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		Toast.makeText(this, "Cambio la pantalla", Toast.LENGTH_LONG).show();
-		int orient = getResources().getConfiguration().orientation;
-		
+//		Toast.makeText(this, "Cambio la pantalla", Toast.LENGTH_LONG).show();
+         prefs.edit().putString("categoriasSelected", categoriasSelected.toString()).commit();	
 	}
 
 	@Override
