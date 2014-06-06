@@ -141,8 +141,15 @@ public class SplashActivity extends Activity {
 			bundle.putStringArray("catList", catList);
 			bundle.putStringArray("catListIds", catListIds);
 			yourIntent.putExtras(bundle);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			finish();
-			startActivity(yourIntent);}else{
+			startActivity(yourIntent);
+			}else{
 				crearDialogoConexion();
 			}
 			

@@ -187,6 +187,10 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 			setContentView(R.layout.activity_list_avatar);
 			TextView tittle = (TextView) findViewById(R.id.TextViewHeader1);
 			tittle.setTypeface(tf);
+			tittle.setTextSize(textSize);
+			TextView acercade = (TextView) findViewById(R.id.textoAcercaDe);
+			acercade.setTextSize(textSize);
+			acercade.setTypeface(tf);
 			Log.d("TAG", "n1");
 			categoriasSelected = new ArrayList<String>();
 			try {
@@ -668,7 +672,15 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 													obtainDatafav(lst),
 													R.layout.list_row,
 													new String[] { "name" },
-													new int[] { R.id.title });
+													new int[] { R.id.title }){
+												@Override 
+												public View getView(int position, View convertView, ViewGroup parent) {
+											        View view = super.getView(position, convertView, parent);
+											        TextView textview = (TextView) view.findViewById(R.id.title);
+											        textview.setTypeface(tf);
+											        return view;
+											    }
+											};
 											listView.setAdapter(aaa);
 
 										}
