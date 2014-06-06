@@ -19,12 +19,14 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnShowListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -35,6 +37,7 @@ import android.os.StrictMode;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -42,6 +45,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -93,6 +97,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 	private ImageButton buttonInf;
 	private ImageButton shareButton;
 	private Button cmbOpciones;
+	private AlertDialog dialg;
 	// TextView wordDef;
 
 	private String storage;
@@ -1214,16 +1219,25 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		}
 		sclView.addView(ll, new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
 		builder.setView(sclView);
-		AlertDialog dialg=builder.create();
-		
-
-		dialg.show();
-		Button accept =  dialg.getButton(DialogInterface.BUTTON_POSITIVE);
+		dialg=builder.create();
 		tf= Typeface.createFromAsset(getAssets(), "brasilfont.otf");
-		accept.setTypeface(tf);
-		accept.setTextSize(textSize);
-		accept.setBackgroundResource(R.drawable.green_button);
-	
+		dialg.setOnShowListener(new OnShowListener() {
+
+		    @Override
+		    public void onShow(DialogInterface dialog) {
+		        final Button posButton = dialg.getButton(DialogInterface.BUTTON_POSITIVE);
+		       
+		        LayoutParams posParams = (LayoutParams) posButton.getLayoutParams();
+		        posParams.width = LayoutParams.MATCH_PARENT;
+		        posParams.height = LayoutParams.MATCH_PARENT;
+		        posButton.setTypeface(tf);
+				posButton.setTextSize(textSize);
+		        posButton.setLayoutParams(posParams);
+		        posButton.setBackgroundResource(R.drawable.yellow);
+		    }
+		});
+		dialg.show();
+		
 		
 		
 		return dialg;
