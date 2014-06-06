@@ -743,12 +743,13 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 
 						String normalizedName = Normalizer.normalize(
 								receivedList.get(i).getNombre(), Form.NFC);
-						Log.d("avatares", "nombre de la lista: "
-								+ normalizedName + " " + name);
+//						Log.d("avatares", "nombre de la lista: "
+//								+ normalizedName + " " + name);
 
 						if (normalizedName.equalsIgnoreCase(name)) {
 							enlace = receivedList.get(i).getEnlaceVideo();
 							nombreVideo = receivedList.get(i).getNombre();
+							Log.d("name", "name Video: " + nombreVideo);
 							defVideo = receivedList.get(i).getDefinicion();
 
 							break;
@@ -1412,9 +1413,8 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		Toast.makeText(this, "Cambio la pantalla", Toast.LENGTH_LONG).show();
-		int orient = getResources().getConfiguration().orientation;
-		
+//		Toast.makeText(this, "Cambio la pantalla", Toast.LENGTH_LONG).show();
+         prefs.edit().putString("categoriasSelected", categoriasSelected.toString()).commit();	
 	}
 
 	@Override
@@ -1520,7 +1520,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		
 		StringFav fav;
 		String listfav = prefs.getString("favoritos", "nada");
-		String nombre = nombreVideo;
+		String nombre = nombreVideo==null? "":nombreVideo;
 		if (!listfav.equalsIgnoreCase("nada")) {
 
 			fav = new StringFav(listfav);

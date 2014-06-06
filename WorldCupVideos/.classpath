@@ -5,7 +5,7 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Javi/Desktop/Jars Aspace/YouTubeAndroidPlayerApi.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Javi/Desktop/Jars Aspace/libGoogleAnalyticsServices.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Usuario/GoogleAnalyticsServicesAndroid_3.01/libGoogleAnalyticsServices.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Usuario/YouTubeAndroidPlayerApi.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
