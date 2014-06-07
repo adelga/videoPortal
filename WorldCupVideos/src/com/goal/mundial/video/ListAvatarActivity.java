@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.w3c.dom.Text;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -30,6 +32,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -242,7 +245,16 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 				TextView textView = (TextView) initDialog
 						.findViewById(R.id.titulo);
 				termsText.setTypeface(tf);
-				termsText.setPaddingRelative(10, 10, 10, 10);
+				if (Build.VERSION.SDK_INT >= 16) {
+
+					termsText.setPaddingRelative(10, 10, 10, 10);
+
+				} else {
+					LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+				    layoutParams.setMargins(10, 10, 10, 10);
+				    termsText.setLayoutParams(layoutParams);
+				}
+				
 				textView.setTypeface(tf);
 				textView.setText(R.string.tituloterminos);
 
@@ -369,7 +381,11 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 						
 						shareButton = (ImageButton) findViewById(R.id.shareButton);
 						shareButton.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_share));
-						shareButton.setBackground(getResources().getDrawable(R.drawable.blue_button));
+						if (Build.VERSION.SDK_INT >= 16) {
+							shareButton.setBackground(getResources().getDrawable(R.drawable.blue_button));
+						} else {
+							shareButton.setBackgroundResource(R.drawable.blue_button);
+						}
 						shareButton.setScaleType(ScaleType.CENTER);
 						shareButton.setOnClickListener(new OnClickListener() {
 							public void onClick(View v) {
@@ -1483,7 +1499,14 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 
 					});
 			TextView favtext = new TextView(mContext);
-			favtext.setBackground(getResources().getDrawable(R.drawable.blue));
+			if (Build.VERSION.SDK_INT >= 16) {
+
+				favtext.setBackground(getResources().getDrawable(R.drawable.blue));
+
+			} else {
+				favtext.setBackgroundResource(R.drawable.blue);
+			}
+			
 			favtext.setText(tittleFav);
 			favtext.setTypeface(tf);
 			favtext.setGravity(Gravity.CENTER);
@@ -1492,7 +1515,16 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 			CheckBox check = new CheckBox(mContext);
 			check.setText(getString(R.string.textoradiobuttondialogfve));
 			check.setTypeface(tf);
-			check.setBackground(getResources().getDrawable(R.drawable.blue));
+			
+			if (Build.VERSION.SDK_INT >= 16) {
+
+				check.setBackground(getResources().getDrawable(R.drawable.blue));
+
+			} else {
+				check.setBackgroundResource(R.drawable.blue);
+			}
+			
+
 			check.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 				
 				@Override
