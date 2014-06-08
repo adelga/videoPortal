@@ -13,13 +13,17 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.goal.mundial.video.util.SystemUiHider;
+import com.google.android.youtube.player.YouTubeIntents;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -38,7 +42,7 @@ public class SplashActivity extends Activity {
 	protected List<AvatarWord> avataresFiltrados;
 	protected List<String> categoriasSelected;
 	// List<String> listAvataresOrdenados;
-
+	public Context cntx;
 	protected XmlData xmlData;
 	private Builder alert;
 
@@ -48,15 +52,29 @@ public class SplashActivity extends Activity {
 
 		setContentView(R.layout.activity_splash);
 		// this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
+		cntx=this;
+		if(YouTubeIntents.getInstalledYouTubeVersionCode(cntx)<4216){
+			Toast.makeText(cntx, "You need to update Youtube app to use WCVideos", Toast.LENGTH_LONG).show();
+			final String appPackageName = "com.google.android.youtube"; // getPackageName() from Context or Activity object
+			try {
+			    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+			} catch (android.content.ActivityNotFoundException anfe) {
+			    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
+			}
+			finish();
+		} else {
 		new AsyncThread().execute("");
+		}
 	}
 
 	private class AsyncThread extends AsyncTask<String, Void, String> {
 
 		@Override
 		protected String doInBackground(String... params) {
+			
+			
 			try {
+				
 				pd = new ParserDom(getString(R.string.url), SplashActivity.this);
 
 				xmlData = pd.parse();
@@ -121,6 +139,7 @@ public class SplashActivity extends Activity {
 				e.printStackTrace();
 				crearDialogoConexion();
 			}
+
 			return null;
 		}
 
