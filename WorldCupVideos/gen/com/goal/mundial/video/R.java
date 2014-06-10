@@ -23,9 +23,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 Enable automatic activity tracking
 Enable automatic activity tracking
 Enable automatic activity tracking
+Enable automatic activity tracking
          */
         public static final int ga_autoActivityTracking=0x7f050000;
         /** Enable automatic exception tracking
+Enable automatic exception tracking
 Enable automatic exception tracking
 Enable automatic exception tracking
 Enable automatic exception tracking
@@ -153,71 +155,70 @@ Enable automatic exception tracking
     }
     public static final class id {
         public static final int CmbOpciones=0x7f0a000d;
-        public static final int RlayoutVideo=0x7f0a0029;
+        public static final int RlayoutVideo=0x7f0a0027;
         public static final int TextViewHeader1=0x7f0a0004;
-        public static final int action_settings=0x7f0a0036;
+        public static final int action_settings=0x7f0a0034;
         public static final int autotextview=0x7f0a000c;
         public static final int button1=0x7f0a0006;
         public static final int button2=0x7f0a0007;
         public static final int button3=0x7f0a0008;
-        public static final int buttonDefinicion=0x7f0a0032;
-        public static final int buttonDialogAceptar=0x7f0a001d;
-        public static final int buttonDialogCancelar=0x7f0a001c;
-        public static final int buttonDialogFacebook=0x7f0a0025;
-        public static final int buttonDialogSalir=0x7f0a0027;
-        public static final int buttonDialogTwitter=0x7f0a0026;
-        public static final int buttonExitVideo=0x7f0a002c;
-        public static final int buttonSaveF=0x7f0a0031;
-        public static final int cbViewSpinnerItem=0x7f0a0033;
+        public static final int buttonDefinicion=0x7f0a0030;
+        public static final int buttonDialogAceptar=0x7f0a001b;
+        public static final int buttonDialogCancelar=0x7f0a001a;
+        public static final int buttonDialogFacebook=0x7f0a0023;
+        public static final int buttonDialogSalir=0x7f0a0025;
+        public static final int buttonDialogTwitter=0x7f0a0024;
+        public static final int buttonExitVideo=0x7f0a002a;
+        public static final int buttonSaveF=0x7f0a002f;
+        public static final int cbViewSpinnerItem=0x7f0a0031;
         public static final int container=0x7f0a0016;
-        public static final int customfvedialog=0x7f0a001f;
-        public static final int followText=0x7f0a0021;
-        public static final int fullscreen_content=0x7f0a0017;
-        public static final int fullscreen_content_controls=0x7f0a0018;
-        public static final int fvelogo=0x7f0a0020;
+        public static final int customfvedialog=0x7f0a001d;
+        public static final int followText=0x7f0a001f;
+        public static final int fvelogo=0x7f0a001e;
         public static final int imageView1=0x7f0a0003;
         public static final int layoutAcercade=0x7f0a0010;
         public static final int layoutAction=0x7f0a0002;
         public static final int layoutBanner=0x7f0a0014;
         public static final int layoutButtons=0x7f0a0005;
         public static final int layoutButtons2=0x7f0a0009;
-        public static final int layoutButtonsExit=0x7f0a0024;
+        public static final int layoutButtonsExit=0x7f0a0022;
         public static final int layoutCenter=0x7f0a000e;
         public static final int layoutHeader=0x7f0a0000;
         public static final int layoutHeader1=0x7f0a0001;
-        public static final int layoutTituloTerminos=0x7f0a0019;
-        public static final int layoutVideoButtons=0x7f0a0030;
-        public static final int layoutVideoInfo=0x7f0a002a;
-        public static final int layouttext=0x7f0a001b;
-        public static final int linearLayoutCheck=0x7f0a001e;
+        public static final int layoutTituloTerminos=0x7f0a0017;
+        public static final int layoutVideoButtons=0x7f0a002e;
+        public static final int layoutVideoInfo=0x7f0a0028;
+        public static final int layouttext=0x7f0a0019;
+        public static final int linearLayoutCheck=0x7f0a001c;
         public static final int list=0x7f0a000f;
-        public static final int menu_settings=0x7f0a0035;
-        public static final int optionsLayout=0x7f0a0022;
+        public static final int menu_settings=0x7f0a0033;
+        public static final int optionsLayout=0x7f0a0020;
         public static final int progressBar1=0x7f0a000b;
         public static final int progressBar2=0x7f0a000a;
-        public static final int radioButton1=0x7f0a0023;
+        public static final int radioButton1=0x7f0a0021;
         public static final int shareButton=0x7f0a0013;
-        public static final int textViewSpinnerItem=0x7f0a0034;
+        public static final int textViewSpinnerItem=0x7f0a0032;
         public static final int textoAcercaDe=0x7f0a0011;
         public static final int textoCompartirApp=0x7f0a0012;
-        public static final int title=0x7f0a0028;
-        public static final int titulo=0x7f0a001a;
-        public static final int tituloVideo=0x7f0a002b;
-        public static final int video=0x7f0a002d;
+        public static final int title=0x7f0a0026;
+        public static final int titulo=0x7f0a0018;
+        public static final int tituloVideo=0x7f0a0029;
+        public static final int video=0x7f0a002b;
         public static final int webview=0x7f0a0015;
-        public static final int wordDefinition=0x7f0a002f;
-        public static final int youtubeplayerview=0x7f0a002e;
+        public static final int wordDefinition=0x7f0a002d;
+        public static final int youtubeplayerview=0x7f0a002c;
     }
     public static final class layout {
-        public static final int activity_list_avatar=0x7f030000;
-        public static final int activity_select_category=0x7f030001;
-        public static final int activity_splash=0x7f030002;
-        public static final int dialog_init=0x7f030003;
-        public static final int fragment_select_category=0x7f030004;
-        public static final int lfv_dialog=0x7f030005;
-        public static final int list_row=0x7f030006;
-        public static final int mediaplayer=0x7f030007;
-        public static final int spinner_item_text=0x7f030008;
+        public static final int activity=0x7f030000;
+        public static final int activity_list_avatar=0x7f030001;
+        public static final int activity_select_category=0x7f030002;
+        public static final int activity_splash=0x7f030003;
+        public static final int dialog_init=0x7f030004;
+        public static final int fragment_select_category=0x7f030005;
+        public static final int lfv_dialog=0x7f030006;
+        public static final int list_row=0x7f030007;
+        public static final int mediaplayer=0x7f030008;
+        public static final int spinner_item_text=0x7f030009;
     }
     public static final class menu {
         public static final int activity_list_avatar=0x7f090000;
@@ -260,6 +261,7 @@ Enable automatic exception tracking
 Replace placeholder ID with your tracking ID
 Replace placeholder ID with your tracking ID
 Replace placeholder ID with your tracking ID
+Replace placeholder ID with your tracking ID
          */
         public static final int ga_trackingId=0x7f040000;
         public static final int irA=0x7f040017;
@@ -296,6 +298,7 @@ Replace placeholder ID with your tracking ID
         public static final int PrimaryFont=0x7f080001;
         public static final int SubHeaderFont=0x7f080002;
         /**  <item name="android:alpha">1</item> 
+ <item name="android:alpha">1</item> 
          */
         public static final int Theme_DialogCustom=0x7f080004;
         public static final int Theme_Transparent=0x7f080003;

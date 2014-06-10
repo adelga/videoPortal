@@ -55,6 +55,7 @@ import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AutoCompleteTextView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -1495,7 +1496,38 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							modifyFavorito();
-						}
+							if(favoritos){
+							SharedPreferences pref = getSharedPreferences(
+									"SIGNATICPreferencias", Context.MODE_PRIVATE);
+
+							String listfav = pref.getString("favoritos", "nada");
+							if (!listfav.equalsIgnoreCase("nada")) {
+								StringFav fav = new StringFav(listfav);
+								listFiles = fav.getFavList();
+							} else {
+								listFiles = new ArrayList();
+							}
+
+							Log.d(tag, "favoritos " + listFiles.toString());
+							Collections.sort(listFiles, new Comparador());
+							
+							adapfav = new SimpleAdapter(getApplicationContext(),
+									obtainDatafav(listFiles), R.layout.list_row,
+									new String[] { "name" }, new int[] { R.id.title }) {
+								
+								@Override 
+								public View getView(int position, View convertView, ViewGroup parent) {
+							        View view = super.getView(position, convertView, parent);
+							        TextView textview = (TextView) view.findViewById(R.id.title);
+							        textview.setTypeface(tf);
+							        return view;
+							    }
+							};
+							buttonFav.setSelected(true);
+							listView.setAdapter(adapfav);
+							adapfav.notifyDataSetChanged();
+							buttonSearch.setSelected(false);
+						}}
 
 					});
 			TextView favtext = new TextView(mContext);

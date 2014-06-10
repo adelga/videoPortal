@@ -158,14 +158,6 @@
             android:layout_height="fill_parent"
             android:dividerHeight="4dp" />
 
-        <!-- <ListView -->
-        <!-- android:id="@+id/list" -->
-        <!-- android:layout_width="fill_parent" -->
-        <!-- android:layout_height="fill_parent" -->
-        <!-- android:divider="#b5b5b5" -->
-        <!-- android:dividerHeight="1dp" -->
-        <!-- android:listSelector="@drawable/list_selector" /> -->
-
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
