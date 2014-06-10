@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import android.app.Activity;
@@ -74,8 +75,8 @@ public class SplashActivity extends Activity {
 			
 			
 			try {
-				
-				pd = new ParserDom(getString(R.string.url), SplashActivity.this);
+				Log.d("Idioma", Locale.getDefault().getDisplayLanguage());
+				pd = new ParserDom(getString(R.string.url), SplashActivity.this, Locale.getDefault().getDisplayLanguage());
 
 				xmlData = pd.parse();
 

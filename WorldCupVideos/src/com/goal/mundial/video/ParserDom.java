@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -24,12 +25,14 @@ public class ParserDom {
 	
 	private String categorias [];
 	
+	private String language;
+	
 	XmlData xmlData = new XmlData();
 
-	public ParserDom(String url, Context ct) {
+	public ParserDom(String url, Context ct, String lang) {
 
 		try {
-
+			this.language = lang;
 			this.rssUrl = new URL(url);
 
 		} catch (MalformedURLException e) {
@@ -67,9 +70,17 @@ public XmlData parse() {
 
 			InstitutionCategories instCat = new InstitutionCategories();
 			
+			if(language.contains("en") || language.contains("EN") || language.contains("En")){
+			
 			instCat.setWordCategoriesValue(" All");
 			
 			instCat.setWordCategoriesId(" ALL");
+			
+			} else {
+				instCat.setWordCategoriesValue(" Todas");
+				
+				instCat.setWordCategoriesId(" TODAS");
+			}
 			
 			for (int a = 0; a < institution.getLength(); a ++){
 				

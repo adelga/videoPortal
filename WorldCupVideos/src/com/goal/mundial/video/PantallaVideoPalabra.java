@@ -69,7 +69,7 @@ public class PantallaVideoPalabra extends YouTubeBaseActivity implements
 		// Quitamos barra de titulo de la aplicacion
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
-		tf = Typeface.createFromAsset(getAssets(), "brasilfont.otf");
+		tf = Typeface.createFromAsset(getAssets(), "brazil2014new.ttf");
 		setContentView(R.layout.mediaplayer);
 
 		if (getResources().getDisplayMetrics().density <= 0.75) {

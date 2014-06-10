@@ -179,7 +179,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		try {
 			display = getWindowManager().getDefaultDisplay();
 
-			tf = Typeface.createFromAsset(getAssets(), "brasilfont.otf");
+			tf = Typeface.createFromAsset(getAssets(), "brazil2014new.ttf");
 
 			storage = Environment.getExternalStorageDirectory() + "/avatares/";
 
@@ -1192,7 +1192,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 								}
 							}
 
-							cmbOpciones.setText("Categories "
+							cmbOpciones.setText(getResources().getString(R.string.title_activity_select_category)+" "
 									+ auxiliar.substring(0, auxiliar.length()));
 							textSpinnerChanged = true;
 
@@ -1236,7 +1236,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		sclView.addView(ll, new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
 		builder.setView(sclView);
 		dialg=builder.create();
-		tf= Typeface.createFromAsset(getAssets(), "brasilfont.otf");
+		tf= Typeface.createFromAsset(getAssets(), "brazil2014new.ttf");
 		dialg.setOnShowListener(new OnShowListener() {
 
 		    @Override

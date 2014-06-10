@@ -29,7 +29,7 @@ public class SelectCategory extends Activity {
 		setContentView(R.layout.activity_select_category);
 		try {
 			mContext=this;
-			tf = Typeface.createFromAsset(getAssets(), "brasilfont.otf");
+			tf = Typeface.createFromAsset(getAssets(), "brazil2014new.ttf");
 			if (savedInstanceState == null) {
 				catList = getIntent().getExtras().getStringArray("catList");
 				catListIds = getIntent().getExtras().getStringArray(
@@ -40,7 +40,7 @@ public class SelectCategory extends Activity {
 				CheckBox checkBox= new CheckBox(mContext);
 				checkBox.setText(catList[i]);
 				checkBox.setTypeface(tf);
-				checkBox.setBackground(getResources().getDrawable(R.drawable.blue));
+				checkBox.setBackgroundResource(R.drawable.blue);
 				checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 					
 					@Override
