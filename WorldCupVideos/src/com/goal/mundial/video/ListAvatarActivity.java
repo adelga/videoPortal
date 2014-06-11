@@ -1496,7 +1496,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							modifyFavorito();
-							if(favoritos){
+							
 							SharedPreferences pref = getSharedPreferences(
 									"SIGNATICPreferencias", Context.MODE_PRIVATE);
 
@@ -1527,7 +1527,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 							listView.setAdapter(adapfav);
 							adapfav.notifyDataSetChanged();
 							buttonSearch.setSelected(false);
-						}}
+						}
 
 					});
 			TextView favtext = new TextView(mContext);
