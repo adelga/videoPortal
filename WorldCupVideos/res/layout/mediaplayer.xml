@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootlayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#88000000"
     android:orientation="vertical" >
 
     <LinearLayout
+        android:id="@+id/toplayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.2" >
+        android:layout_weight="0.2"
+        android:orientation="horizontal" >
     </LinearLayout>
 
     <LinearLayout
@@ -68,11 +71,22 @@
             android:orientation="vertical"
             android:paddingLeft="5dp"
             android:paddingRight="5dp" >
-
-            <com.google.android.youtube.player.YouTubePlayerView
-                android:id="@+id/youtubeplayerview"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
+			
+            <FrameLayout
+				 android:id="@+id/main_content"
+				 android:layout_width="match_parent"
+				 android:layout_height="match_parent" >
+	            <WebView
+	                android:id="@+id/youtubeplayerview"
+	                android:layout_width="fill_parent"
+	                android:layout_height="fill_parent" />
+            </FrameLayout>
+            <FrameLayout
+				 android:id="@+id/target_view"
+				 android:layout_width="fill_parent"
+				 android:layout_height="fill_parent"
+				 android:visibility="gone">
+			</FrameLayout>
 
             <TextView
                 android:id="@+id/wordDefinition"
@@ -84,9 +98,10 @@
                 android:drawableBottom="@drawable/escuchar"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-              android:textColor="@android:color/white"
+                android:textColor="@android:color/white"
                 android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
@@ -120,9 +135,11 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/bottomlayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.2" >
+        android:layout_weight="0.2"
+        android:orientation="horizontal" >
     </LinearLayout>
 
 </LinearLayout>

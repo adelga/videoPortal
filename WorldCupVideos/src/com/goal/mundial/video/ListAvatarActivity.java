@@ -102,6 +102,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 	private ImageButton shareButton;
 	private Button cmbOpciones;
 	private AlertDialog dialg;
+	private Toast favToast;
 	// TextView wordDef;
 
 	private String storage;
@@ -169,6 +170,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 		
 
 		super.onCreate(bundle);
+
 		Log.d("onCreate", "Entra al onCreate");
 		oncreateok = true;
 		mContext = this;
@@ -549,7 +551,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 
 								});
 						TextView favtext = new TextView(mContext);
-						favtext.setBackground(getResources().getDrawable(R.drawable.blue));
+						favtext.setBackgroundResource(R.drawable.blue);
 						favtext.setText("Do you want enable bookmarks?");
 						favtext.setTypeface(tf);
 						favtext.setGravity(Gravity.CENTER);
@@ -559,7 +561,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 						check.setText("Enable Bookmarks");
 						check.setTypeface(tf);
 						check.setChecked(false);
-						check.setBackground(getResources().getDrawable(R.drawable.blue));
+						check.setBackgroundResource(R.drawable.blue);
 						check.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 							
 							@Override
@@ -754,52 +756,42 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 				public void onItemClick(AdapterView<?> arg0, View arg1,
 						int pos, long arg3) {
 
-					Log.d("clik", "posrrr:" + pos);
+					Log.d("clik", "pos:" + pos);
 
-					TextView txtView = (TextView) arg1.findViewById(R.id.title);
-					txtView.setTypeface(tf);
+					TextView txtView = (TextView) arg1
+							.findViewById(R.id.title);
 					String name = (String) txtView.getText();
 					String enlace = "";
-
 					for (int i = 0; i < receivedList.size(); i++) {
 
-						String normalizedName = Normalizer.normalize(
-								receivedList.get(i).getNombre(), Form.NFC);
-//						Log.d("avatares", "nombre de la lista: "
-//								+ normalizedName + " " + name);
+						String normalizedName = Normalizer
+								.normalize(receivedList.get(i)
+										.getNombre(), Form.NFC);
 
-						if (normalizedName.equalsIgnoreCase(name)) {
-							enlace = receivedList.get(i).getEnlaceVideo();
-							nombreVideo = receivedList.get(i).getNombre();
-							Log.d("name", "name Video: " + nombreVideo);
-							defVideo = receivedList.get(i).getDefinicion();
-
+						if (normalizedName.equals(name)) {
+							enlace = receivedList.get(i)
+									.getEnlaceVideo();
+							nombreVideo = receivedList.get(i)
+									.getNombre();
+							filename = normalizedName + ".mp4";
+							defVideo = receivedList.get(i)
+									.getDefinicion();
 							break;
 						}
-
 					}
-					String[] enl = enlace.split("/");
-					String en = enl[enl.length - 1];
 
-					Intent intent = null;
+					Log.d("Avatares", "enlace: " + enlace);
 
-					intent = YouTubeStandalonePlayer.createVideoIntent(
-							(Activity) mContext, API_KEY, en.split("\\?")[0],
-							0, true, true);
+					Intent intent = new Intent(
+							ListAvatarActivity.this,
+							PantallaVideoPalabra.class);
+					intent.putExtra("enlacevideo", enlace);
+					Log.d("Nombre: ", nombreVideo);
+					intent.putExtra("nombrevideo", nombreVideo);
+					intent.putExtra("existevideo", "S");
+					intent.putExtra("definicionvideo", defVideo);
 
-					if (intent != null) {
-						if (canResolveIntent(intent)) {
-							startActivityForResult(intent,
-									REQ_START_STANDALONE_PLAYER);
-						} else {
-							// Could not resolve the intent - must need to
-							// install or update the YouTube API service.
-							Log.e(tag, "ERRORR");
-							YouTubeInitializationResult.SERVICE_MISSING
-									.getErrorDialog((Activity) mContext,
-											REQ_RESOLVE_SERVICE_MISSING).show();
-						}
-					}
+					startActivity(intent);
 				}
 
 			});
@@ -1144,8 +1136,14 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 
 		builder.setTitle(getResources().getString(R.string.selectionCategory));
 		TextView customTitleView= new TextView(mContext);
+		if (Build.VERSION.SDK_INT >= 16) {
+
+			customTitleView.setBackground(getResources().getDrawable(R.drawable.blue));
+
+		} else {
+			customTitleView.setBackgroundResource(R.drawable.blue);
+		}
 		
-		customTitleView.setBackground(getResources().getDrawable(R.drawable.blue));
 		customTitleView.setText(getResources().getString(R.string.selectionCategory));
 		customTitleView.setTypeface(tf);
 		customTitleView.setGravity(Gravity.CENTER);
@@ -1222,7 +1220,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 			if(categoriasSelected.contains(catListIds[i])) checkBox.setChecked(true);
 			checkBox.setTypeface(tf);
 			checkBox.setId(584788888+i);
-			checkBox.setBackground(getResources().getDrawable(R.drawable.blue));
+			checkBox.setBackgroundResource(R.drawable.blue);
 			checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 				
 				@Override
@@ -1484,8 +1482,10 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 			}
 			if(fav.isFavorito(nombreVideo)){
 				tittleFav=getString(R.string.ButtonDeleteFav);
+				favToast = Toast.makeText(mContext, getString(R.string.toast_eliminar_fav), Toast.LENGTH_LONG);
 			}else{
 				tittleFav= getString(R.string.fav);
+				favToast = Toast.makeText(mContext, getString(R.string.toast_agregar_fav), Toast.LENGTH_LONG);
 			}
 			Log.d(tag, "OnActivityOnresult data: " + data.toString());
 			AlertDialog.Builder builderfav = new AlertDialog.Builder(this);
@@ -1507,7 +1507,7 @@ public class ListAvatarActivity extends Activity implements TextWatcher {
 							} else {
 								listFiles = new ArrayList();
 							}
-
+							favToast.show();
 							Log.d(tag, "favoritos " + listFiles.toString());
 							Collections.sort(listFiles, new Comparador());
 							

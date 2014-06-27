@@ -49,11 +49,14 @@
     <string name="confSpinner">Confirmar</string>
     <string name="toastSelectAll">Seleccionaste la opción TODAS. Se mostrarán todos los videos de la aplicación.</string>
     <string name="vervideo">Ver video</string>
-	<string name="verdefinicion">Definición</string>
+	<string name="verdefinicion">Goles</string>
 	<string name="fav">Agregar video a favorito</string>
 	<string name="url">http://redteam.socialdeveloper.org/worldcupesp.xml</string>
 	<string name="shareapp">Compartir aplicación</string>
 	<string name="action_settings">Configuración</string>
 	<string name="title_activity_select_category">Categorías</string>
 	<string name="error_player">Error</string>
+	<string name="toast_eliminar_fav">Video eliminado de favoritos</string>
+	<string name="toast_agregar_fav">Video añadido a favoritos</string>
+	<string name="toast_loaded">Video cargado. Pulsa el botón de play para verlo</string>
 </resources>

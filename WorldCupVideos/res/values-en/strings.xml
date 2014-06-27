@@ -49,11 +49,14 @@
     <string name="confSpinner">Confirm</string>
     <string name="toastSelectAll">You have selected ALL option. All words from all categories will be displayed.</string>
     <string name="vervideo">Watch video</string>
-	<string name="verdefinicion">Definition</string>
+	<string name="verdefinicion">Goals</string>
 	<string name="fav">BookMark this video?</string>
 	<string name="url">http://redteam.socialdeveloper.org/worldcup.xml</string>
 	<string name="shareapp">Share App</string>
 	<string name="action_settings">Settings</string>
 	<string name="title_activity_select_category">Categories</string>
 	<string name="error_player">Error</string>
+	<string name="toast_eliminar_fav">Video deleted from favorites</string>
+	<string name="toast_agregar_fav">Video added to favorites</string>
+	<string name="toast_loaded">Video loaded. Touch the play button to watch it</string>
 </resources>

@@ -52,7 +52,6 @@ public class SplashActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_splash);
-		// this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		cntx=this;
 		if(YouTubeIntents.getInstalledYouTubeVersionCode(cntx)<4216){
 			Toast.makeText(cntx, "You need to update Youtube app to use WCVideos", Toast.LENGTH_LONG).show();

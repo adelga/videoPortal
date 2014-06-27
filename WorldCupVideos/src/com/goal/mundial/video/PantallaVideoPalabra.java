@@ -1,5 +1,7 @@
 package com.goal.mundial.video;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.json.JSONException;
 
 import android.annotation.SuppressLint;
@@ -9,14 +11,24 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.webkit.WebChromeClient;
+import android.webkit.WebChromeClient.CustomViewCallback;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,11 +49,15 @@ public class PantallaVideoPalabra extends YouTubeBaseActivity implements
 	private Bundle bundle;
 	
 	private String nombre;
+	
+	private LinearLayout videoinfo;
+	private LinearLayout videobuttons;
 
 	private String definicion;
 
 	private Button saveF;
-
+	private boolean showCustomView;
+	private boolean hideCustomView;
 	private Button definitionButton;
 
 	private TextView wordDef;
@@ -51,7 +67,8 @@ public class PantallaVideoPalabra extends YouTubeBaseActivity implements
 	public static final String API_KEY = "AIzaSyBWhF9xlg0bWM6MGfuEWhSbioQW4dXXdL0";
 	public static String VIDEO_ID;
 
-	private YouTubePlayerView youTubePlayerView;
+	private WebView webViewPlayer;
+	//private YouTubePlayerView youTubePlayerView;
 	private String enlace;
 	protected String urlVideo;
 	protected String urlVideo2;
@@ -61,6 +78,26 @@ public class PantallaVideoPalabra extends YouTubeBaseActivity implements
 	private boolean showVideo = true;
 
 	private Typeface tf;
+	private Context cntx;
+	
+	private FrameLayout mTargetView;
+	private FrameLayout mContentView;
+	private LinearLayout rootlay;
+	private CustomViewCallback mCustomViewCallback;
+	private View mCustomView;
+	private WebChromeClient mClient;
+
+	private LinearLayout rlayvid;
+
+	private LinearLayout toplay;
+
+	private LinearLayout botlay;
+
+	private LayoutParams params;
+
+	private int leftmargin;
+
+	private int rightmargin;
 
 	public void onCreate(Bundle savedInstanceState) {
 
@@ -71,7 +108,7 @@ public class PantallaVideoPalabra extends YouTubeBaseActivity implements
 		super.onCreate(savedInstanceState);
 		tf = Typeface.createFromAsset(getAssets(), "brazil2014new.ttf");
 		setContentView(R.layout.mediaplayer);
-
+		cntx=this;
 		if (getResources().getDisplayMetrics().density <= 0.75) {
 
 			RelativeLayout rl = (RelativeLayout) findViewById(R.id.RlayoutVideo);
@@ -79,8 +116,8 @@ public class PantallaVideoPalabra extends YouTubeBaseActivity implements
 
 		}
 
-		youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtubeplayerview);
-		youTubePlayerView.initialize(API_KEY, this);
+//		youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtubeplayerview);
+//		youTubePlayerView.initialize(API_KEY, this);
 
 		wordDef = (TextView) findViewById(R.id.wordDefinition);
 		wordDef.setVisibility(View.GONE);
@@ -90,22 +127,59 @@ public class PantallaVideoPalabra extends YouTubeBaseActivity implements
 		// Log.d(TAG, enlace);
 
 		// parsear enlace, quitar embed y url a partir de ?
-		String separador1 = "embed/";
-		String separador2 = "\\?";
-		String[] palabras = enlace.split(separador1);
-		String idvideo = palabras[1];
-		Log.d(TAG, idvideo);
-		String[] idvideofinal = idvideo.split(separador2);
-		String urlYoutube = idvideofinal[0];
-		Log.d(TAG, idvideofinal[0]);
+//		String separador1 = "embed/";
+//		String separador2 = "\\?";
+//		String[] palabras = enlace.split(separador1);
+//		String idvideo = palabras[1];
+//		Log.d(TAG, idvideo);
+//		String[] idvideofinal = idvideo.split(separador2);
+//		String urlYoutube = idvideofinal[0];
+//		Log.d(TAG, idvideofinal[0]);
 
-		VIDEO_ID = urlYoutube;
+//		VIDEO_ID = urlYoutube;
+		mContentView = (FrameLayout) findViewById(R.id.main_content);
+	    mTargetView = (FrameLayout)findViewById(R.id.target_view);
+		webViewPlayer = (WebView) findViewById(R.id.youtubeplayerview);
+		webViewPlayer.getSettings().setJavaScriptEnabled(true);
+		webViewPlayer.getSettings().setAppCacheEnabled(true);
+		webViewPlayer.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+		webViewPlayer.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+		webViewPlayer.getSettings().setDomStorageEnabled(true);
+		webViewPlayer.setWebViewClient(new WebViewClient(){
+			@Override
+		    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+		        // This line right here is what you're missing.
+		        // Use the url provided in the method.  It will match the member URL!
+				webViewPlayer.loadUrl(url);
+		        return true;
+		    }
 
+			@Override
+			public void onPageFinished(WebView view, String url) {
+				// TODO Auto-generated method stub
+				Toast.makeText(cntx, getString(R.string.toast_loaded), Toast.LENGTH_SHORT).show();
+		        	super.onPageFinished(view, url);    
+			}
+			
+			
+		});
+		mClient = new MyChromeClient();
+	    webViewPlayer.setWebChromeClient(mClient);
+		webViewPlayer.loadUrl(enlace);
 		nombre = bundle.getString("nombrevideo");
 		Log.d("Contenido del bundle", bundle.getString("definicionvideo") + "");
 
 		saveF = (Button) findViewById(R.id.buttonSaveF);
 		definitionButton = (Button) findViewById(R.id.buttonDefinicion);
+		videoinfo = (LinearLayout)findViewById(R.id.layoutVideoInfo);
+        videobuttons = (LinearLayout)findViewById(R.id.layoutVideoButtons);
+        rlayvid = (LinearLayout)findViewById(R.id.RlayoutVideo);
+        toplay = (LinearLayout)findViewById(R.id.toplayout);
+        botlay = (LinearLayout)findViewById(R.id.bottomlayout);
+        rootlay = (LinearLayout)findViewById(R.id.rootlayout);
+        params = (LinearLayout.LayoutParams)rlayvid.getLayoutParams();
+        leftmargin = params.leftMargin;
+        rightmargin = params.rightMargin;
 
 		definicion = bundle.getString("definicionvideo");
 		if (definicion.equals("")) {
@@ -208,6 +282,9 @@ public class PantallaVideoPalabra extends YouTubeBaseActivity implements
 			public void onClick(View v) {
 
 				finish();
+				if(webViewPlayer!=null){
+					webViewPlayer.destroy();
+				}
 			}
 
 		});
@@ -216,16 +293,20 @@ public class PantallaVideoPalabra extends YouTubeBaseActivity implements
 			public void onClick(View v) {
 
 				if (showVideo) {
-					youTubePlayerView.setVisibility(View.GONE);
+					webViewPlayer.setVisibility(View.GONE);
+					mContentView.setVisibility(View.GONE);
 					definitionButton.setText(definitionButton.getResources()
 							.getString(R.string.vervideo));
 					wordDef.setText(definicion);
 					wordDef.setVisibility(View.VISIBLE);
+					Log.d("def", "veo definicion");
 				} else {
 					wordDef.setVisibility(View.GONE);
 					definitionButton.setText(definitionButton.getResources()
 							.getString(R.string.verdefinicion));
-					youTubePlayerView.setVisibility(View.VISIBLE);
+					webViewPlayer.setVisibility(View.VISIBLE);
+					mContentView.setVisibility(View.VISIBLE);
+					Log.d("def", "no veo definicion");
 				}
 				showVideo = !showVideo;
 
@@ -312,6 +393,9 @@ public class PantallaVideoPalabra extends YouTubeBaseActivity implements
 	    switch(orient) {
 	                case Configuration.ORIENTATION_LANDSCAPE:
 	                    Log.d("Orientation", "Landscape");
+	                    if(showCustomView){
+	                    	
+	                    }
 	                    break;
 	                case Configuration.ORIENTATION_PORTRAIT:
 	                	Log.d("Orientation", "portrait");
@@ -321,4 +405,56 @@ public class PantallaVideoPalabra extends YouTubeBaseActivity implements
 	                }
 	}
 
+	@Override
+	public void onBackPressed(){
+	    if (mCustomView != null){
+	        mClient.onHideCustomView();
+	    }else{
+	        finish();
+	        if(webViewPlayer!=null){
+				webViewPlayer.destroy();
+			}
+	    }
+	}
+
+	class MyChromeClient extends WebChromeClient {
+		 
+	    @Override
+	    public void onShowCustomView(View view, CustomViewCallback callback) {
+	    	mCustomViewCallback = callback;
+	        mTargetView.addView(view);
+	        mCustomView = view;
+	        mContentView.setVisibility(View.GONE);
+	        videoinfo.setVisibility(View.GONE);
+	        videobuttons.setVisibility(View.GONE);
+	        toplay.setVisibility(View.GONE);
+	        botlay.setVisibility(View.GONE);
+	        mTargetView.setVisibility(View.VISIBLE);
+	        params.setMargins(0, 0, 0, 0);
+	        rlayvid.setLayoutParams(params);
+	        mTargetView.bringToFront();
+	    }
+	 
+	    @Override
+	    public void onHideCustomView() {
+	        if (mCustomView == null)
+	            return;
+
+	        mCustomView.setVisibility(View.GONE);
+	        mTargetView.removeView(mCustomView);
+	        mCustomView = null;
+	        mTargetView.setVisibility(View.GONE);
+	        mCustomViewCallback.onCustomViewHidden();
+	        params.setMargins(leftmargin, 0, rightmargin, 0);
+	        rlayvid.setLayoutParams(params);
+	        toplay.setVisibility(View.VISIBLE);
+	        botlay.setVisibility(View.VISIBLE);
+	        mContentView.setVisibility(View.VISIBLE);     
+	        videoinfo.setVisibility(View.VISIBLE);
+	        videobuttons.setVisibility(View.VISIBLE);
+	    }
+	}
+	
+	
+	
 }
